@@ -6,12 +6,12 @@ import Lenis from "@studio-freight/lenis";
 import { Themetoggle } from "./components/ui/themeToggle";
 import building from "../../public/building.jpg";
 import { Button } from "@/components/ui/button";
+import GlareHover from "@/components/ui/GlareHover";
+import mine from "../../public/mine.jpg";
 
 export default function Home() {
   useEffect(() => {
-    const lenis = new Lenis({
-      
-    });
+    const lenis = new Lenis({});
 
     function raf(time: number) {
       lenis.raf(time);
@@ -29,6 +29,7 @@ export default function Home() {
     <main className="relative">
       <Section1 />
       <Section2 />
+      <Section3 />
     </main>
   );
 }
@@ -36,7 +37,8 @@ export default function Home() {
 const Section1 = () => {
   return (
     <section className="sticky top-0 h-screen z-0 overflow-hidden">
-      <div className="flex flex-row items-start justify-between px-6 lg:px-24 h-full">
+      <div className="flex flex-col lg:flex-row items-center justify-between px-6 lg:px-24 h-full space-y-10 lg:space-y-0">
+        {/* Left Content */}
         <div className="w-full lg:w-1/2 flex flex-col justify-center">
           <Themetoggle />
 
@@ -53,19 +55,19 @@ const Section1 = () => {
             smart tracking, and faster payments in one clean dashboard.
           </p>
 
-          <div className="flex items-center justify-center">
+          <div className="flex items-center justify-center lg:justify-start">
             <Button variant="outline">Get Started</Button>
           </div>
         </div>
 
         {/* Right Image */}
-        <div className=" lg:block lg:w-1/2 ml-[50px] flex items-center justify-center">
+        <div className="w-full lg:w-1/2 flex items-center justify-center ml-0 lg:ml-[50px]">
           <Image
             src={building}
             alt="Building"
             width={400}
             height={300}
-            className="object-cover rounded-xl"
+            className="object-cover rounded-xl w-full max-w-[400px] h-auto"
           />
         </div>
       </div>
@@ -73,24 +75,71 @@ const Section1 = () => {
   );
 };
 
+
+
 const Section2 = () => {
   return (
-    <section className="relative min-h-[200vh] z-10 bg-gray-100">
-      <div className="sticky top-0 h-screen flex items-center justify-center">
-        <div className="text-center px-6">
-          <h2 className="text-4xl font-bold mb-10">Developer Photo</h2>
+    <section className="relative min-h-[200vh] z-10 bg-black text-white">
+      <div className="sticky top-0 h-screen flex items-center justify-center px-4">
+        {/* GlareHover Card */}
+        <div style={{ height: "auto" }}>
+          <GlareHover
+            glareColor="#ffffff"
+            glareOpacity={0.3}
+            glareAngle={-30}
+            glareSize={300}
+            transitionDuration={800}
+            playOnce={false}
+          >
+            <div className="rounded-xl shadow-lg p-6 md:p-10 flex flex-col md:flex-row gap-8 items-center md:items-start max-w-4xl w-full">
+              {/* Left: Image */}
+              <div className="flex-shrink-0">
+                <Image
+                  src={mine}
+                  alt="developer"
+                  width={250}
+                  height={250}
+                  className="object-cover rounded-xl"
+                />
 
-          <div className="mx-auto max-w-3xl">
-            <Image
-              src={building}
-              alt="Developer"
-              width={100}
-              height={100}
-              className="object-cover rounded-xl"
-            />
-          </div>
+                <div className="mt-5">
+                  <h1 className=" text-center text-xl font-extrabold ">
+                    RISHAV RAJ
+                  </h1>
+                </div>
+              </div>
+
+              {/* Right: Text Content */}
+              <div className="flex flex-col space-y-4 text-center md:text-left">
+                <h1 className="font-extrabold text-2xl md:text-3xl">
+                  Developer
+                </h1>
+                <p className="text-sm md:text-base leading-relaxed text-gray-300 font-bold ">
+                  I’m currently a computer science student, obsessed with
+                  learning by building. This SaaS is my way of solving a problem
+                  I’ve seen students, freelancers, and small businesses face
+                  every day: the struggle to get paid on time. If this saves you
+                  even a few hours every month, I’ve done my job.
+                </p>
+              </div>
+            </div>
+          </GlareHover>
         </div>
+
       </div>
+
+     
     </section>
   );
 };
+
+
+const Section3 = () => {
+  return (
+    <section className="relative min-h-[200vh] z-10 bg-black text-white">
+      <div>
+        
+      </div>
+    </section>
+  );
+}
