@@ -7,7 +7,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/app/components/ui/card";
-import { GithubIcon, Loader2 } from "lucide-react";
+import { GithubIcon } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Label } from "@radix-ui/react-dropdown-menu";
 import { Input } from "@/app/components/ui/input";
@@ -15,9 +15,7 @@ import { CardFooter } from "@/app/components/ui/card";
 import { authClient } from "@/lib/auth-client";
 import { toast } from "sonner";
 import { useTransition } from "react";
-import { github } from "better-auth/social-providers";
 import { LoaderThree } from "@/components/ui/loader";
-import { log } from "console";
 
 export default function LoginPage() {
   const [GitHubPending, GitHubTransition] = useTransition();
@@ -30,7 +28,6 @@ export default function LoginPage() {
         fetchOptions: {
           onSuccess: () => {
             toast.success("Signed in with GitHub");
-            console.log("hi success");
             
           },
 

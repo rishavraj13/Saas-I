@@ -1,9 +1,9 @@
 import { betterAuth } from "better-auth";
 import { prismaAdapter } from "better-auth/adapters/prisma";
-import { PrismaClient } from "@prisma/client";
+import { PrismaClient } from "../generated/prisma/client";
 import { env } from "./env";
 import { github } from "better-auth/social-providers";
-
+import { emailOTP } from "better-auth/plugins";
 const prisma = new PrismaClient();
 
 export const auth = betterAuth({
@@ -20,4 +20,12 @@ export const auth = betterAuth({
 
   secret: env.BETTER_AUTH_SECRET,
   baseUrl: env.BETTER_AUTH_URL,
+
+  plugins: [
+    emailOTP({
+      async sendVerificationOTP({ email, otp}) {
+        
+      },
+    }),
+  ],
 });
