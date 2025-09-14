@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "./components/theme-provider";
 import { Toaster } from "@/components/ui/sonner";
+import LiquidEther from "@/components/ui/LiquidEther";
 
 
 export default function RootLayout({
@@ -19,6 +20,7 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
+          
           {children}
           <Toaster />
         </ThemeProvider>

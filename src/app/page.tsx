@@ -8,6 +8,9 @@ import building from "../../public/building.jpg";
 import { Button } from "@/components/ui/button";
 import GlareHover from "@/components/ui/GlareHover";
 import mine from "../../public/mine.jpg";
+import { CardHoverEffectDemo } from "@/components/CardHover";
+import ScrollFloat from "@/components/ui/ScrollFloat";
+import LiquidEther from "@/components/ui/LiquidEther";
 
 export default function Home() {
   useEffect(() => {
@@ -28,6 +31,7 @@ export default function Home() {
   return (
     <main className="relative">
       <Section1 />
+
       <Section2 />
       <Section3 />
     </main>
@@ -36,7 +40,7 @@ export default function Home() {
 
 const Section1 = () => {
   return (
-    <section className="sticky top-0 h-screen z-0 overflow-hidden">
+    <section className="sticky top-0 h-screen z-0 overflow-hidden bg-black">
       <div className="flex flex-col lg:flex-row items-center justify-between px-6 lg:px-24 h-full space-y-10 lg:space-y-0">
         {/* Left Content */}
         <div className="w-full lg:w-1/2 flex flex-col justify-center">
@@ -75,11 +79,9 @@ const Section1 = () => {
   );
 };
 
-
-
 const Section2 = () => {
   return (
-    <section className="relative min-h-[200vh] z-10 bg-black text-white">
+    <section className="relative min-h-[200vh] z-10  text-white py-10 bg-neutral-950">
       <div className="sticky top-0 h-screen flex items-center justify-center px-4">
         {/* GlareHover Card */}
         <div style={{ height: "auto" }}>
@@ -125,21 +127,28 @@ const Section2 = () => {
             </div>
           </GlareHover>
         </div>
-
       </div>
-
-     
     </section>
   );
 };
 
-
 const Section3 = () => {
   return (
-    <section className="relative min-h-[200vh] z-10 bg-black text-white">
+    <section className="relative min-h-screen z-10 text-white  bg-neutral-950">
+      <div className="font-extrabold ml-40">
+        <ScrollFloat
+          animationDuration={2}
+          ease="back.inOut(2)"
+          scrollStart="center bottom+=50%"
+          scrollEnd="bottom bottom-=40%"
+          stagger={0.05}
+        >
+          Features
+        </ScrollFloat>
+      </div>
       <div>
-        
+        <CardHoverEffectDemo />
       </div>
     </section>
   );
-}
+};
