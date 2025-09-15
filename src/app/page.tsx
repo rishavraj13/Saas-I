@@ -1,5 +1,6 @@
 "use client";
 
+import Spline from "@splinetool/react-spline"
 import Image from "next/image";
 import { useEffect } from "react";
 import Lenis from "@studio-freight/lenis";
@@ -10,7 +11,7 @@ import GlareHover from "@/components/ui/GlareHover";
 import mine from "../../public/mine.jpg";
 import { CardHoverEffectDemo } from "@/components/CardHover";
 import ScrollFloat from "@/components/ui/ScrollFloat";
-import LiquidEther from "@/components/ui/LiquidEther";
+import { GetCard } from "@/components/Getcard";
 
 export default function Home() {
   useEffect(() => {
@@ -31,9 +32,9 @@ export default function Home() {
   return (
     <main className="relative">
       <Section1 />
-
       <Section2 />
       <Section3 />
+      <Section4/>
     </main>
   );
 }
@@ -84,6 +85,7 @@ const Section2 = () => {
     <section className="relative min-h-[200vh] z-10  text-white py-10 bg-neutral-950">
       <div className="sticky top-0 h-screen flex items-center justify-center px-4">
         {/* GlareHover Card */}
+       
         <div style={{ height: "auto" }}>
           <GlareHover
             glareColor="#ffffff"
@@ -149,6 +151,19 @@ const Section3 = () => {
       <div>
         <CardHoverEffectDemo />
       </div>
+
+      <div>
+        {/* getcard */}
+        
+      </div>
     </section>
   );
 };
+
+const Section4 = ()=>{
+  return (
+    <div className="relative min-h-screen z-10 text-red-700  bg-neutral-950 ">
+      <GetCard />
+    </div>
+  );
+}
