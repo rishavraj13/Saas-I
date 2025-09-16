@@ -1,17 +1,18 @@
 "use client";
 
-import Spline from "@splinetool/react-spline"
+import Spline from "@splinetool/react-spline";
 import Image from "next/image";
 import { useEffect } from "react";
 import Lenis from "@studio-freight/lenis";
 import { Themetoggle } from "./components/ui/themeToggle";
 import building from "../../public/building.jpg";
-import { Button } from "@/components/ui/button";
-import GlareHover from "@/components/ui/GlareHover";
+import { Button } from "@/app/components/ui/button";
+import GlareHover from "@/app/components/GlareHover";
 import mine from "../../public/mine.jpg";
-import { CardHoverEffectDemo } from "@/components/CardHover";
-import ScrollFloat from "@/components/ui/ScrollFloat";
-import { GetCard } from "@/components/Getcard";
+import { CardHoverEffectDemo } from "@/app/components/ui/CardHover";
+import ScrollFloat from "@/app/components/ScrollFloat";
+import { GetCard } from "@/app/components/Getcard";
+import { HowItWorks } from "@/app/components/Howitworks";
 
 export default function Home() {
   useEffect(() => {
@@ -34,7 +35,8 @@ export default function Home() {
       <Section1 />
       <Section2 />
       <Section3 />
-      <Section4/>
+      <Section4 />
+      <Section5 />
     </main>
   );
 }
@@ -85,7 +87,7 @@ const Section2 = () => {
     <section className="relative min-h-[200vh] z-10  text-white py-10 bg-neutral-950">
       <div className="sticky top-0 h-screen flex items-center justify-center px-4">
         {/* GlareHover Card */}
-       
+
         <div style={{ height: "auto" }}>
           <GlareHover
             glareColor="#ffffff"
@@ -152,18 +154,23 @@ const Section3 = () => {
         <CardHoverEffectDemo />
       </div>
 
-      <div>
-        {/* getcard */}
-        
-      </div>
+      <div>{/* getcard */}</div>
     </section>
   );
 };
 
-const Section4 = ()=>{
+const Section4 = () => {
   return (
-    <div className="relative min-h-screen z-10 text-red-700  bg-neutral-950 ">
+    <div className="relative min-h-screen z-10  bg-neutral-950 ">
       <GetCard />
     </div>
   );
-}
+};
+
+const Section5 = () => {
+  return (
+    <div className="relative min-h-screen z-10  bg-neutral-950 ">
+      <HowItWorks />
+    </div>
+  );
+};

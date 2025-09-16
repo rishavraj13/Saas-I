@@ -1,4 +1,4 @@
-import { buttonVariants } from "@/components/ui/button";
+import { buttonVariants } from "@/app/components/ui/button";
 import { ArrowLeft } from "lucide-react";
 import { ReactNode } from "react";
 import Link from "next/link";

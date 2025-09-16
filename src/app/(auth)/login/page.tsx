@@ -8,14 +8,14 @@ import {
   CardTitle,
 } from "@/app/components/ui/card";
 import { GithubIcon } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { Button } from "@/app/components/ui/button";
 import { Label } from "@radix-ui/react-dropdown-menu";
 import { Input } from "@/app/components/ui/input";
 import { CardFooter } from "@/app/components/ui/card";
 import { authClient } from "@/lib/auth-client";
 import { toast } from "sonner";
 import { useTransition } from "react";
-import { LoaderThree } from "@/components/ui/loader";
+import { LoaderThree } from "@/app/components/loader";
 
 export default function LoginPage() {
   const [GitHubPending, GitHubTransition] = useTransition();
