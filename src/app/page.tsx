@@ -13,6 +13,7 @@ import { CardHoverEffectDemo } from "@/app/components/ui/CardHover";
 import ScrollFloat from "@/app/components/ScrollFloat";
 import { GetCard } from "@/app/components/Getcard";
 import { HowItWorks } from "@/app/components/Howitworks";
+import Workaction from "./components/Workaction";
 
 export default function Home() {
   useEffect(() => {
@@ -37,6 +38,7 @@ export default function Home() {
       <Section3 />
       <Section4 />
       <Section5 />
+      <Section6 />
     </main>
   );
 }
@@ -171,6 +173,14 @@ const Section5 = () => {
   return (
     <div className="relative min-h-screen z-10  bg-neutral-950 ">
       <HowItWorks />
+    </div>
+  );
+};
+
+const Section6 = () => {
+  return (
+    <div className="relative min-h-screen z-10  bg-neutral-950 ">
+      <Workaction />
     </div>
   );
 };
