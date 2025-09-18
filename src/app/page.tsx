@@ -14,6 +14,8 @@ import ScrollFloat from "@/app/components/ScrollFloat";
 import { GetCard } from "@/app/components/Getcard";
 import { HowItWorks } from "@/app/components/Howitworks";
 import Workaction from "./components/Workaction";
+import Pricing from "./components/Pricing";
+import Footer from "./components/Footer";
 
 export default function Home() {
   useEffect(() => {
@@ -39,6 +41,7 @@ export default function Home() {
       <Section4 />
       <Section5 />
       <Section6 />
+      <Section7/>
     </main>
   );
 }
@@ -184,3 +187,18 @@ const Section6 = () => {
     </div>
   );
 };
+
+const Section7 =() => {
+  return <div className="relative min-h-screen z-10  bg-neutral-950 flex flex-col ">
+    <Pricing/>
+    <Footer/>
+  </div>;
+}
+
+// const Section8 = () => {
+//   return (
+//     <div className="relative min-h-screen z-10  bg-neutral-950 flex flex-col">
+//       <Footer />
+//     </div>
+//   );
+// };
