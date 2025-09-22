@@ -2,8 +2,9 @@ import { buttonVariants } from "@/app/components/ui/button";
 import { ArrowLeft } from "lucide-react";
 import { ReactNode } from "react";
 import Link from "next/link";
-import Logo from "../../../public/Logo.png"
 import Image from "next/image";
+import Logo from "../../../public/Logo.png";
+
 
 export default function AuthLayout({ children }: { children: ReactNode }) {
   return (
