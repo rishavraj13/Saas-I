@@ -1,13 +1,12 @@
-"use client"
+"use client";
 
 import Image from "next/image";
 import Logo from "../../../public/Logo.png";
 import { Bell, ChevronDown, Search, User } from "lucide-react";
 import { useState } from "react";
 
-export default function Header() {
-
-    const [showProfileMenu, setShowProfileMenu] = useState(false);
+export default  function Header() {
+  const [showProfileMenu, setShowProfileMenu] = useState(false);
 
   return (
     <div className="bg-gray-800 h-15 border-b px-6 py-1 fixed top-0 left-0 w-full z-50 shadow ">
@@ -41,7 +40,7 @@ export default function Header() {
               <div className="w-8 h-8 bg-gray-300 rounded-full flex items-center justify-center">
                 <User className="w-5 h-5 text-white" />
               </div>
-              <span className="font-medium text-white">Username</span>
+              <span className="font-medium text-white">username</span>
               <ChevronDown className="w-4 h-4 text-white" />
             </button>
 

@@ -4,6 +4,8 @@ import { signupSchema, SignupSchemaType } from "../../(Schemas)/signupschema";
 import { Button } from "@/app/components/ui/button";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
+import Link from "next/link"; 
+
 
 export default function Signup() {
   const {
@@ -92,10 +94,17 @@ export default function Signup() {
           )}
         </div>
 
-        <div className="p-4">
+        <div className="p-4 flex justify-between items-center">
           <Button variant="secondary" type="submit" className="cursor-pointer">
             Signup
           </Button>
+
+          <p className="text-sm text-gray-400">
+            Already a user?{" "}
+            <Link href="/login" className="text-blue-500 hover:underline">
+              Login
+            </Link>
+          </p>
         </div>
       </form>
     </div>

@@ -1,6 +1,5 @@
 "use client";
 
-import Spline from "@splinetool/react-spline";
 import Image from "next/image";
 import { useEffect } from "react";
 import Lenis from "@studio-freight/lenis";
@@ -16,6 +15,8 @@ import { HowItWorks } from "@/app/components/Howitworks";
 import Workaction from "./components/Workaction";
 import Pricing from "./components/Pricing";
 import Footer from "./components/Footer";
+import  { useRouter } from "next/navigation";
+
 
 export default function Home() {
   useEffect(() => {
@@ -47,6 +48,7 @@ export default function Home() {
 }
 
 const Section1 = () => {
+  const router = useRouter();
   return (
     <section className="sticky top-0 h-screen z-0 overflow-hidden bg-black">
       <div className="flex flex-col lg:flex-row items-center justify-between px-6 lg:px-24 h-full space-y-10 lg:space-y-0">
@@ -68,7 +70,7 @@ const Section1 = () => {
           </p>
 
           <div className="flex items-center justify-center lg:justify-start">
-            <Button variant="outline">Get Started</Button>
+            <Button variant="outline" onClick={() => router.push("/signup")}>Get Started</Button>
           </div>
         </div>
 

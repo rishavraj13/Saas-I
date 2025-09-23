@@ -7,37 +7,42 @@ import {
   CardHeader,
   CardTitle,
 } from "@/app/components/ui/card";
-import { GithubIcon } from "lucide-react";
 import { Button } from "@/app/components/ui/button";
-import { Label } from "@radix-ui/react-dropdown-menu";
 import { Input } from "@/app/components/ui/input";
 import { CardFooter } from "@/app/components/ui/card";
-import { authClient } from "@/lib/auth-client";
-import { toast } from "sonner";
-import { useTransition } from "react";
-import { LoaderThree } from "@/app/components/loader";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { loginSchema, LoginSchemaType } from "../../(Schemas)/loginschema";
+import { Label } from "@radix-ui/react-dropdown-menu";
+import Link from "next/link";
+import { signIn } from "next-auth/react";
+import { useRouter } from "next/navigation";
 
 export default function LoginPage() {
-  const [GitHubPending, GitHubTransition] = useTransition();
-  async function SigninwithGithub() {
-    GitHubTransition(async () => {
-      await authClient.signIn.social({
-        provider: "github",
-        callbackURL: "/",
+  const router = useRouter();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<LoginSchemaType>({
+    resolver: zodResolver(loginSchema),
+  });
 
-        fetchOptions: {
-          onSuccess: () => {
-            toast.success("Signed in with GitHub");
-            
-          },
-
-          onError: () => {
-            toast.error("Error from the Server");
-          },
-        },
-      });
+  const onSubmit = async (data: LoginSchemaType) => {
+    const SignInData = await signIn("credentials", {
+      email: data.email,
+      password: data.password,
+      redirect: false,
     });
-  }
+
+    console.log("SignInData:", SignInData);
+
+    if (SignInData?.error) {
+      console.log(SignInData.error);
+    } else {
+      router.push("/dashboard");
+    }
+  };
 
   return (
     <div>
@@ -50,42 +55,23 @@ export default function LoginPage() {
         </CardHeader>
 
         <CardContent>
-          <Button
-            disabled={GitHubPending}
-            onClick={SigninwithGithub}
-            variant="outline"
-            className="flex gap-2 items-center justify-center w-full"
-          >
-            {GitHubPending ? (
-              <>
-                <LoaderThree />
-              </>
-            ) : (
-              <>
-                <GithubIcon className="size-4" />
-                Login with GitHub
-              </>
-            )}
-          </Button>
-
-          <div className=" relative text-center text-sm after:absolute after:inset-0 after:top-1/2 after:z-0 after:flex after:items-center after:border-t after:border-border mt-4">
-            <span className="bg-card text-muted-foreground relative z-10 px-2">
-              Or continue with
-            </span>
-          </div>
-
-          <form>
+          <form onSubmit={handleSubmit(onSubmit)}>
             <div className="flex flex-col gap-6">
+              {/* Email */}
               <div className="grid gap-2">
                 <Label>Email</Label>
                 <Input
                   id="email"
                   type="email"
                   placeholder="m@example.com"
-                  required
+                  {...register("email")}
                 />
+                {errors.email && (
+                  <p className="text-red-500 text-sm">{errors.email.message}</p>
+                )}
               </div>
 
+              {/* Password */}
               <div className="grid gap-2">
                 <div className="flex items-center">
                   <Label>Password</Label>
@@ -96,17 +82,33 @@ export default function LoginPage() {
                     Forgot your password?
                   </a>
                 </div>
-                <Input id="password" type="password" required />
+                <Input
+                  id="password"
+                  type="password"
+                  {...register("password")}
+                />
+                {errors.password && (
+                  <p className="text-red-500 text-sm">
+                    {errors.password.message}
+                  </p>
+                )}
               </div>
             </div>
+
+            <CardFooter className="flex-col gap-2 mt-6">
+              <Button type="submit" className="w-full cursor-pointer">
+                Login
+              </Button>
+            </CardFooter>
+
+            <p className="text-sm text-gray-400 text-center p-4">
+              create Account{" "}
+              <Link href="/signup" className="text-blue-500 hover:underline">
+                signup
+              </Link>
+            </p>
           </form>
         </CardContent>
-
-        <CardFooter className="flex-col gap-2 ">
-          <Button type="submit" className="w-full cursor-pointer">
-            Login
-          </Button>
-        </CardFooter>
       </Card>
     </div>
   );
