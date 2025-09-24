@@ -4,8 +4,9 @@ import Image from "next/image";
 import Logo from "../../../public/Logo.png";
 import { Bell, ChevronDown, Search, User } from "lucide-react";
 import { useState } from "react";
+import { signOut } from "next-auth/react";
 
-export default  function Header() {
+export default function Header() {
   const [showProfileMenu, setShowProfileMenu] = useState(false);
 
   return (
@@ -58,12 +59,12 @@ export default  function Header() {
                 >
                   Settings
                 </a>
-                <a
-                  href="#"
-                  className="block px-4 py-2 text-red-600 hover:bg-gray-50"
+                <button
+                  onClick={() => signOut({ callbackUrl: "/login" })}
+                  className="w-full text-left px-4 py-2 text-red-600 hover:bg-gray-50"
                 >
                   Logout
-                </a>
+                </button>
               </div>
             )}
           </div>

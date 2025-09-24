@@ -17,9 +17,12 @@ import { Label } from "@radix-ui/react-dropdown-menu";
 import Link from "next/link";
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
+import { useState } from "react";
 
 export default function LoginPage() {
   const router = useRouter();
+  const [isLoading, setIsLoading] = useState(false); // 🔹 loader state
+
   const {
     register,
     handleSubmit,
@@ -29,11 +32,15 @@ export default function LoginPage() {
   });
 
   const onSubmit = async (data: LoginSchemaType) => {
+    setIsLoading(true); // 🔹 start loader
+
     const SignInData = await signIn("credentials", {
       email: data.email,
       password: data.password,
       redirect: false,
     });
+
+    setIsLoading(false); // 🔹 stop loader
 
     console.log("SignInData:", SignInData);
 
@@ -96,8 +103,12 @@ export default function LoginPage() {
             </div>
 
             <CardFooter className="flex-col gap-2 mt-6">
-              <Button type="submit" className="w-full cursor-pointer">
-                Login
+              <Button
+                type="submit"
+                className="w-full cursor-pointer"
+                disabled={isLoading}
+              >
+                {isLoading ? "Logging in..." : "Login"} {/* 🔹 show loader */}
               </Button>
             </CardFooter>
 
