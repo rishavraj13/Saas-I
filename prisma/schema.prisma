@@ -38,6 +38,7 @@ datasource db {
   date        DateTime
   due         String
   note        String?
+  
 
   // 🔹 One-to-many relation with items
   items       Item[]
